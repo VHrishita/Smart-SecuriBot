@@ -13,6 +13,13 @@ This chatbot helps users check password strength, detect unsafe keywords, and pr
 - 👋 Responds to greetings like “hi” and “bye”
 - ⚡ Works completely offline — no server or data collection
 
+
+---
+
+## 🚀 Live Site
+
+🔗 Visit here → **[https://github.com/VHrishita/Smart-SecuriBot](https://smart-securi-bot.vercel.app/)**
+
 ---
 
 ## 🛠️ Built With
