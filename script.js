@@ -117,7 +117,7 @@ async function sendMessage() {
   const lowerMsg = msg.toLowerCase();
 
   // 💬 Greeting handler
-  if (["hi", "hello", "hey", "hii", ].some((w) => lowerMsg.includes(w))) {
+  if (["hello", "hey"].some((w) => lowerMsg.includes(w))) {
     showTypingIndicator();
     await new Promise((r) => setTimeout(r, 700));
     removeTypingIndicator();
