@@ -15,7 +15,6 @@ function appendMessage(message, sender) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// typing indicator
 function showTypingIndicator() {
   const typingDiv = document.createElement("div");
   typingDiv.classList.add("bot-msg");
@@ -30,7 +29,6 @@ function removeTypingIndicator() {
   if (typingDiv) typingDiv.remove();
 }
 
-// ⚡ Bot instantly displays full message
 function botTypeMessage(message) {
   return new Promise((resolve) => {
     const msgDiv = document.createElement("div");
@@ -42,7 +40,6 @@ function botTypeMessage(message) {
   });
 }
 
-// --- Password DFA Logic ---
 function simulateDFA(password) {
   let states = { upper: false, lower: false, digit: false, special: false };
   let transitions = [];
@@ -71,7 +68,6 @@ function simulateDFA(password) {
   return { transitions, accepted: allGood };
 }
 
-// --- Regex Strength Check ---
 function checkStrength(password) {
   const regex =
     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -85,7 +81,6 @@ function checkStrength(password) {
   return "Strong password!";
 }
 
-// --- Reassurance messages (cycled) ---
 let reassuranceIndex = 0;
 const reassuranceMessages = [
   "🛡️ Totally safe! I don’t store or send your password anywhere — everything runs right here in your browser.",
@@ -93,7 +88,6 @@ const reassuranceMessages = [
   "✅ 100% private! This tool works locally — your info never touches the internet."
 ];
 
-// --- Greeting and Farewell messages ---
 const greetings = [
   "Hey there 👋! I’m your Security Assistant. Want me to check a password for you?",
   "Hiya 😄! Ready to test your password strength?",
@@ -106,7 +100,6 @@ const farewells = [
   "Bye 👋 — may your passwords always be uncrackable 🧠"
 ];
 
-// --- Chatbot Logic ---
 async function sendMessage() {
   const msg = userInput.value.trim();
   if (!msg) return;
@@ -116,7 +109,6 @@ async function sendMessage() {
 
   const lowerMsg = msg.toLowerCase();
 
-  // 💬 Greeting handler
   if (["hello", "hey"].some((w) => lowerMsg.includes(w))) {
     showTypingIndicator();
     await new Promise((r) => setTimeout(r, 700));
@@ -126,7 +118,6 @@ async function sendMessage() {
     return;
   }
 
-  // 💬 Farewell handler
   if (["bye", "thank you", "goodbye", "see you", "later"].some((w) => lowerMsg.includes(w))) {
     showTypingIndicator();
     await new Promise((r) => setTimeout(r, 700));
@@ -136,7 +127,6 @@ async function sendMessage() {
     return;
   }
 
-  // ✅ Reassurance reply when user asks about safety
   if (
     lowerMsg.includes("safe") ||
     lowerMsg.includes("save") ||
@@ -154,7 +144,6 @@ async function sendMessage() {
     return;
   }
 
-  // Default DFA + regex analysis
   showTypingIndicator();
   await new Promise((r) => setTimeout(r, 800));
   removeTypingIndicator();
